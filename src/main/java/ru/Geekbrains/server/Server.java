@@ -15,9 +15,12 @@ public class Server {
 
     public Server() {
         clients = new Vector<>();
-        authService = new SimpleAuthService();
+        authService = new SingleAuthService();
         try (ServerSocket serverSocket = new ServerSocket(8189)) {
             System.out.println("Сервер запущен на порту 8189");
+            if(SingleAuthService.connect()) {
+                System.out.println("База данных подключена");
+            } else throw new RuntimeException("Ошибка при подключении к базе данных");
             while (true) {
                 Socket socket = serverSocket.accept();
                 new ClientHandler(this, socket);
@@ -26,6 +29,7 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        SingleAuthService.disconnect();
         System.out.println("Сервер завершил свою работу");
     }
 
