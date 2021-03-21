@@ -1,0 +1,3 @@
+rootProject.name = 'TelegaChat'
+include 'ru.Geekbrains.server'
+
