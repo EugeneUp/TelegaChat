@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b0409692-b518-42c3-8a6e-c9e7d13cc442" name="Default Changelist" comment="" />
+    <list default="true" id="b0409692-b518-42c3-8a6e-c9e7d13cc442" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_users.db" beforeDir="false" afterPath="$PROJECT_DIR$/auth_users.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/ru/Geekbrains/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/ru/Geekbrains/server/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/ru/Geekbrains/server/SimpleAuthService$UserData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/ru/Geekbrains/server/SimpleAuthService.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,9 +77,25 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TelegaClient" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RunManager" selected="Application.MainServer">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.Geekbrains.client.Main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.Geekbrains.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.Geekbrains.client.Main" />
       <module name="TelegaChat.main" />
@@ -121,27 +143,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TelegaChat [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="dependencies" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="TelegaChat [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -166,10 +167,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainServer" />
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Gradle.TelegaChat [build]" />
         <item itemvalue="Gradle.TelegaChat [run]" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.TelegaChat [dependencies]" />
       </list>
     </recent_temporary>
   </component>
@@ -189,7 +190,21 @@
       <option name="project" value="LOCAL" />
       <updated>1616323430135</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add all files of the project on the repository">
+      <created>1616324465189</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1616324465189</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added authentification via database">
+      <created>1616351275027</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1616351275027</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -207,7 +222,13 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Hosted the server via Gradle" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hosted the server via Gradle" />
+    <MESSAGE value="Add all files of the project on the repository" />
+    <MESSAGE value="Added authentification via database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added authentification via database" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TelegaChat$Main.ic" NAME="Main Coverage Results" MODIFIED="1616279430491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
