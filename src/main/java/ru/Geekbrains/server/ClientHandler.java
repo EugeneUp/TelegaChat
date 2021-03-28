@@ -4,8 +4,11 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ClientHandler {
+    private ExecutorService executorService = Executors.newCachedThreadPool();
     private String nickname;
     private Server server;
     private Socket socket;
@@ -22,18 +25,17 @@ public class ClientHandler {
             this.socket = socket;
             this.in = new DataInputStream(socket.getInputStream());
             this.out = new DataOutputStream(socket.getOutputStream());
-            new Thread(() -> {
+            executorService.execute(() -> {
                 try {
                     while (true) {
                         String msg = in.readUTF();
-                        // /auth login1 pass1
                         if (msg.startsWith("/auth ")) {
                             String[] tokens = msg.split("\\s");
                             String nick = server.getAuthService().getNicknameByLoginAndPassword(tokens[1], tokens[2]);
                             if (nick != null && !server.isNickBusy(nick)) {
                                 sendMsg("/authok " + nick);
                                 nickname = nick;
-                                server.subscribe(this);
+                                server.subscribe(ClientHandler.this);
                                 break;
                             }
                         }
@@ -47,7 +49,7 @@ public class ClientHandler {
                             }
                             if(msg.startsWith("/w ")) {
                                 String[] tokens = msg.split("\\s", 3);
-                                server.privateMsg(this, tokens[1], tokens[2]);
+                                server.privateMsg(ClientHandler.this, tokens[1], tokens[2]);
                             }
                         } else {
                             server.broadcastMsg(nickname + ": " + msg);
@@ -58,7 +60,7 @@ public class ClientHandler {
                 } finally {
                     ClientHandler.this.disconnect();
                 }
-            }).start();
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
