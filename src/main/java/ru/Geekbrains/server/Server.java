@@ -1,11 +1,15 @@
 package ru.Geekbrains.server;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
 
 public class Server {
+    private static final Logger LOGGER = LogManager.getLogger(Server.class.getName());
     private Vector<ClientHandler> clients;
     private AuthService authService;
 
@@ -15,22 +19,26 @@ public class Server {
 
     public Server() {
         clients = new Vector<>();
-        authService = new SingleAuthService();
+        authService = SingleAuthService.getInstance();
         try (ServerSocket serverSocket = new ServerSocket(8189)) {
-            System.out.println("Сервер запущен на порту 8189");
+            LOGGER.info("Server is running on the port 8189");
             if(SingleAuthService.connect()) {
-                System.out.println("База данных подключена");
-            } else throw new RuntimeException("Ошибка при подключении к базе данных");
+                LOGGER.info("DataBase is connected");
+            } else {
+                LOGGER.error("Error while database connected");
+                throw new RuntimeException();
+            }
             while (true) {
                 Socket socket = serverSocket.accept();
                 new ClientHandler(this, socket);
-                System.out.println("Подключился новый клиент");
+                LOGGER.info("Client connected");
             }
         } catch (IOException e) {
             e.printStackTrace();
+            LOGGER.error("Server connecting error");
         }
         SingleAuthService.disconnect();
-        System.out.println("Сервер завершил свою работу");
+        LOGGER.info("Server shutdown");
     }
 
     public void broadcastMsg(String msg) {
@@ -61,6 +69,7 @@ public class Server {
 
     public void unsubscribe(ClientHandler clientHandler) {
         clients.remove(clientHandler);
+        System.out.println(clientHandler.getNickname() + " отключился");
         broadcastClientsList();
     }
 
@@ -76,13 +85,10 @@ public class Server {
     public void broadcastClientsList() {
         StringBuilder sb = new StringBuilder(15 * clients.size());
         sb.append("/clients ");
-        // '/clients '
         for (ClientHandler o : clients) {
             sb.append(o.getNickname()).append(" ");
         }
-        // '/clients nick1 nick2 nick3 '
         sb.setLength(sb.length() - 1);
-        // '/clients nick1 nick2 nick3'
         String out = sb.toString();
         for (ClientHandler o : clients) {
             o.sendMsg(out);
